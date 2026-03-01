@@ -1,0 +1,15 @@
+rule Swarmer_Persistence
+{
+    meta:
+        description = "Detects possible offreg.dll usage with NTUSER hive Creation, which may indicate persistence activity by malware or adversaries"
+        author = "Kyrillos Reyad"
+	    date = "2026-02-28"
+        severity = "high"
+
+    strings:
+        $offreg      = "offreg.dll" nocase ascii wide
+        $ntuser_man  = "NTUSER.MAN" nocase ascii wide
+
+    condition:
+        all of them
+}
